@@ -1,6 +1,6 @@
-﻿IMPORT $,STD;
+﻿IMPORT $;
 
-Chicago := $.File_Chicago_otimizado;
+Chicago := $.File_Chicago_otimizado.File;
 
 rec2 := RECORD
     UNSIGNED row_id;
@@ -29,13 +29,13 @@ rec2 := RECORD
     STRING29 location;
 END;
 
-rec2 MyTransf(Chicago.Layout Le, UNSIGNED cnt) := TRANSFORM
+rec2 MyTransf(Layout Le, UNSIGNED cnt) := TRANSFORM
   SELF.row_id := cnt;
-  SELF.day := STD.Date.FromStringToDate(Le.date[1..10], '%d/%m/%Y');
-  SELF.time := STD.Date.TimeFromParts((UNSIGNED)Le.date[12..13],(UNSIGNED)Le.date[15..16],(UNSIGNED)Le.date[18..19]);
+  SELF.day := 
+  SELF.time := STD.Date.FromStringToDate
   SELF := Le;
 END;
 
-newds := PROJECT(Chicago.File,MyTransf(LEFT,COUNTER));
+newds := PROJECT(Chicago,MyTransf(LEFT,COUNTER));
 
 newds;
