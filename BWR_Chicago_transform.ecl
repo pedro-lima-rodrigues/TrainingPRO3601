@@ -1,8 +1,11 @@
 ﻿IMPORT $,STD;
 
-Chicago := $.File_Chicago_otimizado;
+// EXPORT BWR_Chicago_transform := MODULE
 
-rec2 := RECORD
+  // EXPORT Chicago := $.File_Chicago_otimizado;
+  Chicago := $.File_Chicago_otimizado;
+
+  rec_transf := RECORD
     UNSIGNED row_id;
     UNSIGNED day;
     UNSIGNED time;
@@ -27,15 +30,16 @@ rec2 := RECORD
     REAL8 latitude;
     REAL8 longitude;
     STRING29 location;
-END;
+  END;
 
-rec2 MyTransf(Chicago.Layout Le, UNSIGNED cnt) := TRANSFORM
-  SELF.row_id := cnt;
-  SELF.day := STD.Date.FromStringToDate(Le.date[1..10], '%d/%m/%Y');
-  SELF.time := STD.Date.TimeFromParts((UNSIGNED)Le.date[12..13],(UNSIGNED)Le.date[15..16],(UNSIGNED)Le.date[18..19]);
-  SELF := Le;
-END;
+  // EXPORT rec_transf MyTransf(Chicago.Layout Le, UNSIGNED cnt) := TRANSFORM
+  rec_transf MyTransf(Chicago.Layout Le, UNSIGNED cnt) := TRANSFORM
+    SELF.row_id := cnt;
+    SELF.day := STD.Date.FromStringToDate(Le.date[1..10], '%d/%m/%Y');
+    SELF.time := STD.Date.TimeFromParts((UNSIGNED)Le.date[12..13],(UNSIGNED)Le.date[15..16],(UNSIGNED)Le.date[18..19]);
+    SELF := Le;
+  END;
 
-newds := PROJECT(Chicago.File,MyTransf(LEFT,COUNTER));
-
-newds;
+  EXPORT BWR_Chicago_transform := PROJECT(Chicago.File,MyTransf(LEFT,COUNTER));
+  
+// END;
