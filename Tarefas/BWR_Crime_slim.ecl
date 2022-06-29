@@ -10,4 +10,4 @@ SlimRecs := JOIN($.Formatted_File,$.NormAddrRecs.File,
 									LEFT.block=RIGHT.block,
 									Slimdown(LEFT,RIGHT),LEFT OUTER, LOOKUP);
 
-OUTPUT(SlimRecs,,'~CLASS::HMW::OUT::Crimes_Slim',overwrite);
+OUTPUT(SlimRecs,,'~CLASS::plr::OUT::Crimes_Slim',overwrite);

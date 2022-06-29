@@ -18,5 +18,4 @@ EXPORT File_Persons_Slim := MODULE
 	END;
 	EXPORT File := DATASET('~CLASS::hmw::OUT::Persons_Slim',Layout,FLAT);
 	EXPORT IDX_LName_Fname := INDEX(File,{LastName,FirstName},{File},'~CLASS::hmw::KEY::Lname_Fname');
-
 END;

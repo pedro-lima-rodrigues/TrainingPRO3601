@@ -25,6 +25,6 @@
     REAL8 longitude;
     STRING29 location;
 	END;
-	// SHARED tbl_chicago := '~class::intro::plr::chicago';
-	// EXPORT File := DATASET(tbl_chicago,rec_chicago,FLAT);
+	EXPORT File := DATASET('~CLASS::plr::OUT::Chicago_chicago',Layout,FLAT);
+	EXPORT IDX_LName_Fname := INDEX(File,{LastName,FirstName},{File},'~CLASS::hmw::KEY::Lname_Fname');
 END;

@@ -24,4 +24,4 @@ Rollup_block;
 COUNT(Rollup_block);
 
 S_Rollup_block := SORT(Rollup_block,block_ID);
-OUTPUT(S_Rollup_block,,'~CLASS::HMW::OUT::LookupBlock',OVERWRITE);
+OUTPUT(S_Rollup_block,,'~CLASS::plr::OUT::LookupBlock',OVERWRITE);

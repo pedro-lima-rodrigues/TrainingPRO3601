@@ -5,6 +5,6 @@
       UNSIGNED1 communityarea;
       STRING3 district;
 	END;
-	// SHARED tbl_local := '~class::intro::plr::local';
-	// EXPORT File := DATASET(tbl_local,rec_local,FLAT);
+  EXPORT File := DATASET('~CLASS::plr::OUT::Chicago_local',Layout,FLAT);
+	EXPORT IDX_LName_Fname := INDEX(File,{LastName,FirstName},{File},'~CLASS::hmw::KEY::Lname_Fname');
 END;
