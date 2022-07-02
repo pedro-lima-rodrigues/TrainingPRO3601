@@ -1,11 +1,11 @@
 ﻿// *****
 // Elementos constituintes basicos da ECL
 // Uma definicao
-Mydef := 'Olá mundo';  // definicao do tipo "value"
+// Mydef := 'Ol? mundo';  // definicao do tipo "value"
 
 // Uma acao
-OUTPUT('Olá mundo');
-OUTPUT(mydef);
+// OUTPUT('Ol? mundo');
+// OUTPUT(mydef);
 
 // *****
 // Estruturas de dados basicas em ECL
@@ -13,6 +13,7 @@ OUTPUT(mydef);
 rec := RECORD
   STRING10  Firstname;
 	STRING    Lastname;
+  STRING state;
 	STRING1   Gender;
 	UNSIGNED1 Age;
 	INTEGER   Balance;
@@ -20,41 +21,42 @@ rec := RECORD
 END;
 
 // Declaracao DATASET
-ds := DATASET([{'Alysson','Oliveira','M',26,100,1000.50},
-               {'Bruno','Camargo','',22,-100,500.00},
-							 {'Elaine','Silva','F',19,-50,750.60},
-							 {'Julia','Caetano','F',45,500,5000},
-							 {'Odair','Ferreira','M',66,350,6000},
-							 {'Orlando','Silva','U',67,300,4000}],rec);
+ds := DATASET([{'Alysson','Oliveira','SP','M',26,100,1000.50},
+               {'Bruno','Camargo','MG','M',22,-100,500.00},
+							 {'Elaine','Silva','MG','F',19,-50,750.60},
+							 {'Julia','Caetano','SP','F',45,500,5000},
+							 {'Odair','Ferreira','SP','M',66,350,6000},
+							 {'Orlando','Silva','SP','M',67,300,4000}],rec);
 // OUTPUT(ds);
 
 // myfilterdata := ds(gender<>'');
 // myfilterdata;
 
 // *****
-// Filtragem e tabulaçao de datasets
+// Filtragem e tabula?ao de datasets
 // recset := ds(Age<65);
 // recset; //Equivale a: OUTPUT(recset);
 
 // recset := ds(Age<65,Gender='M');
 // recset;
 
-// IsSeniorMale := ds.Age<65 AND ds.Gender='M'; //definição do tipo "boolean"
+// IsSeniorMale := ds.Age<65 AND ds.Gender='M'; //defini??o do tipo "boolean"
 // recset := ds(IsSeniorMale);
 // recset;
 
 // SetGender := ['M','F'];  //definicao do tipo "set"
 // recset := ds(Gender IN SetGender);
-// recset;						// definição do tipo "recordset"
+// recset;						// defini??o do tipo "recordset"
 // COUNT(recset);    //Equivale a: OUTPUT(COUNT(recset));
 
-// rec2 := RECORD
-  // ds.Gender;
-	// cnt := COUNT(GROUP);
-// END;
+rec2 := RECORD
+  ds.state;
+  ds.Gender;
+	cnt := COUNT(GROUP);
+END;
 
-// crosstab := TABLE(ds,rec2,Gender);
-// crosstab;
+crosstab := TABLE(ds,rec2,Gender,state);
+crosstab;
 
 // avg := AVE(crosstab,cnt);
 // avg;
@@ -94,7 +96,7 @@ ds := DATASET([{'Alysson','Oliveira','M',26,100,1000.50},
 // newds;
 
 
-// Conversão de campo no dataset
+// Convers?o de campo no dataset
 // IMPORT STD;
 
 // rec3 := RECORD

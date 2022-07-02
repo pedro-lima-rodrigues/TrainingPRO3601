@@ -29,7 +29,7 @@ END;
 	  unsigned cnt:=COUNT(GROUP);
 	END;
 
-  mytable := SORT(TABLE(JoinRecs,outrec,primary_type),-cnt);
+  mytable := SORT(TABLE(JoinRecs,outrec,primary_type,block),-cnt);
 	
 	RETURN OUTPUT(mytable);
 END;
